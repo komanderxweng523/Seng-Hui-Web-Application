@@ -76,32 +76,7 @@
 	  
 	  <h4 style="margin:10px 0">Please choose your preferred method of payment.</h4>
 	  
-	  <div class="payment_method_container">
-	  <div class="payment_method_box">
-	    
-		<div class="payment_method_header accordion-toggle payment_method_paypal">
-		<input type="radio" id="paypal_radio" name="paypal_radio" value="paypal" checked><span>Credit/Debit</span>
-		
-		</div><!---/.payment_method_header-->
-		
-		<div class="payment_method_body payment_method_body_paypal accordion-content">
-		 
-		
-		 
-		 <!--<div class="payment_gateway_box">
-	     <?php //include('payment.php'); ?>
-	     </div>-->
-		 
-		 <div class="paypal_text_box">
-		  <div class="paypal__text">
-		   <p>By completing your purchase, you agree to these <a href="#" target="_blank" style="text-decoration:none">Terms of Service.</a></p>
-		  </div>
-		  
-		  <div class="paypal__lock">
-		   <i class="fa fa-lock"></i><span> Secure Conection</span>
-		  </div>
-		  
-		 </div><!--/.paypal_text_box-->
+	 
 		 
 		</div><!--/.payment_method_body-->
 		
@@ -113,7 +88,7 @@
 	  <div class="payment_method_box">
 	    
 		<div class="payment_method_header accordion-toggle payment_method_offline">
-		<input type="radio" id="offline_payment_radio" name="offline_payment_radio" value="offline_payment"><span>Offline Payment Methods</span>
+		<input type="radio" id="offline_payment_radio" name="offline_payment_radio" value="offline_payment"><span>Payment Methods</span>
 		
 		</div><!---/.payment_method_header-->
 		
@@ -152,6 +127,7 @@
 		 $cash_content = $cash['content'];
 		 
 		 ?> 
+
 		 <div class="accordion_offline_option">
 		 <input class="accordion_radio" id="cash_on_delivery_r" name='r' type="radio"  value="cash_on_delivery">Cash on Delivery
 		 
@@ -166,8 +142,71 @@
 		 ?> 
 		 </div>
 		 </div><!--/.accordion_offline_option_content-->
+		 <div class="accordion_offline_option">
+		 <input class="accordion_radio" id="card_r" name='r' type="radio"  value="card">Credit/Debit Card
+
+		 <label style="margin-right: 356px;" for="Card_Holder_Name"><i>Card holder's name: </i></label><br>
+		<input type="text" name="Card_Holder_Name" id="Card_Holder_Name" required>
+		
+		<br>
+		<label style="margin-right: 399px;" for="Card_Number"><i>Card Number: </i></label><br>
+		<input type="text" name="Card_Number" id="Card_Number" required>
+
+		
+		<br>
+		<div class="form-group" id="card-number-field">
+		<label style="margin-right: 335px;" for="Expiry_Date"><i>Expiry Date (MM/YY): </i></label><br>
+		<select name="month">
+			<option value="01">January</option>
+			<option value="02">February</option>
+			<option value="03">March</option>
+			<option value="04">April</option>
+			<option value="05">May</option>
+			<option value="06">June</option>
+			<option value="07">July</option>
+			<option value="08">August</option>
+			<option value="09">September</option>
+			<option value="10">October</option>
+			<option value="11">November</option>
+			<option value="12">December</option>
+		</select>
+
+		<select name="year">
+			<option value="20">2020</option>
+			<option value="21">2021</option>
+			<option value="22">2022</option>
+			<option value="23">2023</option>
+			<option value="24">2024</option>
+			<option value="25">2025</option>
+			<option value="26">2026</option>
+			<option value="27">2027</option>
+			<option value="28">2028</option>
+			<option value="29">2029</option>
+			<option value="30">2030</option>
+		</select>
+		</div>
+
+		<br>
+		<label style="margin-right: 470px;" for="cvv"><i>CVV. </i></label><br>
+		<input type="tel" name="cvv" id="cvv" required>
+
+		<br><br>
+		 
+		 </div><!--/.accordion_offline_option-->
+		
+		<div class="accordion_offline_option_content cash_on_delivery_content" style="display:none">
+		 <p class="offline_option_title">Payment Instructions</p>
+
+	  </div>
+
+		 
+	
+
+
 		 
 		 </div><!------------/.offline_method_option_box-->
+		 
+
 		 
 		  <div class="payment_gateway_box">	     
 		 
@@ -197,13 +236,7 @@
 	  </div><!--/.payment_offline_form_box-->
 	  <!---- Complete order button of offline payment ends--------------->
 	  
-	  <!---- Complete order button of Paypal payment starts--------------->
-	  <div class="payment_paypal_form_box">
-		  <div class="payment_paypal_btn_box">
-		   <a href="checkout.php?payment=paypal"><button id="payment_paypal_btn">Complete Order <i class="fa fa-arrow-circle-right"></i></button></a>
-		  </div>
-	  </div><!--/.payment_paypal_form_box-->
-	  <!---- Complete order button of Paypal payment ends--------------->
+
 	  
 	  </div><!-----/.checkout_container -->
 	  
@@ -226,87 +259,8 @@
    <img src="images/spinner_loader.gif">
   </div>  
 
-<!------------------ Ajax Starts ---------------------------------------->  
-   
-<!--------------- Ajax Ends ---------------------------------------------->
 
 
-<?php }elseif($_GET['payment'] == 'paypal'){ ?>
-
-<style>.menubar{display:none !important}</style>
-
-<div class="content_wrapper">	   
-<?php
-if(!isset($_SESSION['user_id'])){
-	     include('login.php');
-	  }else{
-	  
-	  $invoice_number = mt_rand();
-	  
-	  $ip = get_ip();
-	  
-	  $update_cart = mysqli_query($con,"update cart set buyer_id='$_SESSION[user_id]', invoice_number='$invoice_number' where ip_address='$ip' ");
-	  ?>	  
-	  <div class="checkout_container">
-	  
-	  <div class="checkout_header">
-	  
-	  <div class="checkout_header_box">
-	  <h1><i class="fa fa-shopping-cart"></i> Checkout</h1>
-	  </div><!-- /.checkout_header_box -->
-	  
-	  </div><!---/.checkout_header -->
-	  
-	  <div class="checkout_left">
-	  
-	  <div class="checkout_left_box">
-	  <h3>Your Item (<?php total_items();?>)</h3>
-	  
-	  <div class="checkout_left_item_border_bottom"></div>
-	  
-	  <?php 
-	  $checkout_ip = get_ip();
-	  
-	  $sel_cart = mysqli_query($con,"select * from cart where ip_address='$checkout_ip' ");
-	  
-	  while($fetch_cart = mysqli_fetch_array($sel_cart)){
-	  
-	  $sel_product = mysqli_query($con,"select * from products where product_id='$fetch_cart[product_id]'");
-	  
-	  while($fetch_product = mysqli_fetch_array($sel_product)){
-	  
-	  ?>
-	  
-	  <div class="checkout_left_product_box">
-	  <img src="admin_area/product_images/<?php echo $fetch_product['product_image']; ?>">
-	  
-	  <p class="checkout_left_title"><?php echo $fetch_product['product_title']; ?></p>
-	  
-	  <p style="color:green">$<?php echo $fetch_product['product_price']; ?></p>
-	  </div><!-- /.checkout_left_product_box -->
-	  
-	  <?php } } ?>
-	  </div><!--/.checkout_left_box -->
-	  
-	  </div><!-- /.checkout_left -->
-	  
-	  <div class="checkout_right">
-	  
-	  <div class="checkout_right_box">
-	   <div class="checkout_total_price">
-	   <p>Total: <?php total_price(); ?></p>   
-	   </div>
-	  
-	   <div align="center" style="width:100%;float:left;margin-top:20px">
-	     <?php include('payment.php'); ?>
-	   </div>
-	  </div><!----/.checkout_right_box--->
-	 </div><!-------/.checkout_right------> 
-	 
-  </div><!-------------/.checkout_container------->    
-<?php } ?>
-
-</div><!-------------------/.content_wrapper--------------->
 
 
 
@@ -418,7 +372,9 @@ if(!isset($_SESSION['user_id'])){
 	if(radio_name_page_reload_offline_type == 'bank_transfer'){
 	 
 	 $("#cash_on_delivery_r").prop("checked", false);
+	 $("#card_r").prop("checked", false);
 	 $("#bank_transfer_r").prop("checked", true);
+	 
 	 
 	 // Hide show offline type content
 	 $(".bank_transfer_content").show();
@@ -427,6 +383,16 @@ if(!isset($_SESSION['user_id'])){
 	if(radio_name_page_reload_offline_type == 'cash_on_delivery'){
 	 
 	 $("#cash_on_delivery_r").prop("checked", true);
+	 $("#bank_transfer_r").prop("checked", false);
+	 $("#card_r").prop("checked", false);
+	 
+	 // Hide show offline type content
+	 $(".cash_on_delivery_content").show();
+	}
+
+	if(radio_name_page_reload_offline_type == 'card'){
+	$("#card_r").prop("checked", true);
+	 $("#cash_on_delivery_r").prop("checked", false);
 	 $("#bank_transfer_r").prop("checked", false);
 	 
 	 // Hide show offline type content
