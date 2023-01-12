@@ -144,7 +144,7 @@
 		 </div><!--/.accordion_offline_option_content-->
 		 <div class="accordion_offline_option">
 		 <input class="accordion_radio" id="card_r" name='r' type="radio"  value="card">Credit/Debit Card
-
+<br><br>
 		 <label style="margin-right: 356px;" for="Card_Holder_Name"><i>Card holder's name: </i></label><br>
 		<input type="text" name="Card_Holder_Name" id="Card_Holder_Name" required>
 		
