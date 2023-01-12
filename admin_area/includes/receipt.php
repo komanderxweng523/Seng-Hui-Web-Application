@@ -83,7 +83,7 @@
      <p><strong>Pay To</strong></p> 
      <p>Seng Hui</p>
      <p><strong>Payment Method</strong></p>
-     <p><?php echo $fetch_payment['payment_type'] .'<br>'.$fetch_payment['type']; ?></p>
+     <p><?php echo $fetch_payment['type']; ?></p>
      
     </div><!-- /.receipt_info_right_box -->  
        

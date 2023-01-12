@@ -91,7 +91,7 @@ if(isset($_GET['status_invoice'])){
     <td><small><?php echo $fetch_payment['invoice_id']; ?></small></td>
     <td><small><?php echo $fetch_payment['date']; ?></small></td>
     <td><small><b>RM<?php echo $fetch_payment['product_price'].'.00'; ?></b></small></td>
-    <td><?php echo $fetch_payment['payment_type'].' '.$fetch_payment['type']; ?></td>
+    <td><?php echo $fetch_payment['type']; ?></td>
 
     <td><a href="index.php?action=view_receipt&invoice_id=<?php echo $fetch_payment['invoice_id']; ?>">Receipt</a></td>
   </tr> 
