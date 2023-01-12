@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2023 at 11:07 AM
+-- Generation Time: Jan 12, 2023 at 02:58 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -60,9 +60,9 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`brand_id`, `brand_title`) VALUES
-(1, 'Modenas'),
 (2, 'Yamaha'),
-(3, 'Honda');
+(3, 'Honda'),
+(11, 'Modenas');
 
 -- --------------------------------------------------------
 
@@ -153,9 +153,10 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`payment_id`, `tx_id`, `product_id`, `product_price`, `buyer_id`, `invoice_id`, `currency_code`, `payment_status`, `payer_email`, `quantity`, `amount`, `date`, `type`, `payment_type`, `additional_notes`) VALUES
-(235, '63b943a16e91b', 29, '3790', 27, '704964461', 'RM', 'pending', 'chelseakong2001@gmail.com', 1, '3790', 'January/07/2023', 'cash_on_delivery', 'Offline Payment', ''),
-(236, '63b943dba0d9f', 29, '3790', 27, '892387743', 'RM', 'pending', 'chelseakong2001@gmail.com', 1, '3790', 'January/07/2023', 'cash_on_delivery', 'Offline Payment', ''),
-(234, '63b94279171ee', 30, '121', 27, '494736792', 'RM', 'pending', 'chelseakong2001@gmail.com', 1, '121', 'January/07/2023', 'cash_on_delivery', 'Offline Payment', '');
+(245, '63be4bd7794e6', 37, '4090', 28, '1286114177', 'RM', '', 'John@gmail.com', 1, '4090', 'January/11/2023', 'card', 'Offline Payment', ''),
+(242, '63be44724b079', 34, '11990', 28, '790701920', 'RM', '', 'John@gmail.com', 1, '11990', 'January/11/2023', 'cash_on_delivery', 'Offline Payment', ''),
+(243, '63be49310d9e0', 34, '11990', 28, '370132054', 'RM', '', 'John@gmail.com', 1, '11990', 'January/11/2023', 'card', 'Offline Payment', ''),
+(244, '63be4a734bb92', 38, '3377', 28, '1841081628', 'RM', '', 'John@gmail.com', 1, '3377', 'January/11/2023', 'card', 'Offline Payment', '');
 
 -- --------------------------------------------------------
 
@@ -180,8 +181,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_cat`, `product_brand`, `product_title`, `product_price`, `product_desc`, `product_image`, `product_keywords`, `date`) VALUES
-(29, 0, 3, 'Honda Wave', 3790, '', '135LCFI.png', '', ''),
-(30, 0, 2, 'Honda Wave', 121, '<p>2222</p>', 'wavealpha.png', '', '');
+(33, 0, 3, 'Honda Wave Alpha', 3790, '', 'wavealpha.png', '', ''),
+(34, 0, 3, 'Vario 150', 11990, '<p>The Vario is powered by a 149.3 cc engine, and has a Variable Speed gearbox. The Honda Vario has a seating height of 769 mm and kerb weight of 112 kg. The Vario comes with Disc front brakes and Drum rear brakes. Over 34 users have reviewed Vario on basis of Features, Mileage, seating comfort, and engine performance. Vario top competitors are XDV 250i, ADV 150, Ego Avantiz and NVX.</p>', 'vario.png', '', ''),
+(35, 0, 11, 'Karisma 125s', 5397, '<p>The Karisma 125S Standard is powered by a 124.8 cc engine, and has a Variable Speed gearbox. The Modenas Karisma 125S Standard has a seating height of 770 mm and kerb weight of 108 kg. The Karisma 125S Standard comes with Disc front brakes and Drum rear brakes. Over 4 users have reviewed Karisma 125S Standard on basis of Features, Mileage, seating comfort, and engine performance. Karisma 125S Standard top competitors are XDV 250i Standard, Ego Avantiz Standard, VZ 125i Standard and Mio 110 Standard.</p>', 'Modenas-Karisma-125s_Mystic-Red-7-e1645705517930.jpg', '', ''),
+(36, 0, 2, '135LC', 7798, '<p>The 135LC Fi is&nbsp;powered by a single-cylinder engine displacing 135 cc, making 12.4 PS at 8,000 pm and 12.2 Nm of torque at 6,000 rpm. Power goes through the rear wheel through a four-speed rotary gearbox (with a centrifugal clutch and chain final drive), staying true to its kapchai roots.</p>', '135LCFI.png', '', 'January 07, 2023'),
+(37, 0, 11, 'Kriss MR2', 4090, '<p>This 110 CC underbone bike also offers an attractive black color sports rim and a brake disc for the front wheel while the rear wheel uses a drum-type brake.</p>', 'krissmr2.png', '', 'January 07, 2023'),
+(38, 0, 11, 'Kriss 110', 3377, '<p>This 110 CC underbone bike also offers an attractive black color sports rim and a brake disc for the front wheel while the rear wheel uses a drum-type brake.</p>', 'Kriss110.png', '', 'January 08, 2023');
 
 -- --------------------------------------------------------
 
@@ -202,7 +207,7 @@ CREATE TABLE `tcustomer` (
 --
 
 INSERT INTO `tcustomer` (`id`, `sname`, `pname`, `ostatus`, `tdate`) VALUES
-(1, 'jack', '12', 2, '12/12/2022');
+(3, 'Jennie', 'Modenas Kriss 110', 4, '19/12/2022');
 
 -- --------------------------------------------------------
 
@@ -228,7 +233,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `ip_address`, `name`, `email`, `password`, `IC`, `contact`, `user_address`, `role`) VALUES
 (1, '::1', 'admin', 'admin@gmail.com', 'admin', '2', '1', '1', 'admin'),
-(27, '::1', 'Hey', 'chelseakong2001@gmail.com', '1', '233455', '111', 'No 48 Lot 365 jalan kampung gelam', 'guest');
+(28, '::1', 'John', 'John@gmail.com', '1', '010101136671', '0123445789', 'Lot 123,Jalan Song,Kuching', 'guest');
 
 --
 -- Indexes for dumped tables
@@ -296,19 +301,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `additional_notes`
 --
 ALTER TABLE `additional_notes`
-  MODIFY `note_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `note_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brand_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `brand_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `customerclass`
@@ -326,25 +331,25 @@ ALTER TABLE `offline_payment`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=246;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `tcustomer`
 --
 ALTER TABLE `tcustomer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
